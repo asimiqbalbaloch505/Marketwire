@@ -138,25 +138,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const postContainer = document.getElementById("posts");
     const articleContainer = document.getElementById("full-article");
 
-    // 1. LIST PAGES LOGIC (Home / Category Pages)
-    if (postContainer) {
-        const path = window.location.pathname;
-        let category = "home";
-        if (path.includes("crypto")) category = "crypto";
-        else if (path.includes("markets")) category = "markets";
-        else if (path.includes("economy")) category = "economy";
+   // 1. LIST PAGES LOGIC (Home / Category Pages)
+if (postContainer) {
+    const path = window.location.pathname.toLowerCase();
+    let category = "home";
 
-        let articles = [];
-        if (category === "home") {
-            // Pick top 2 from each for the homepage wire
-            articles = [
-                newsData.crypto[0], newsData.crypto[1],
-                newsData.markets[0], newsData.markets[1],
-                newsData.economy[0], newsData.economy[1]
-            ];
-        } else {
-            articles = newsData[category];
-        }
+    // Detect category by checking if the path contains the keyword
+    if (path.includes("crypto")) category = "crypto";
+    else if (path.includes("markets")) category = "markets";
+    else if (path.includes("economy")) category = "economy";
+
+    let articles = [];
+    if (category === "home") {
+        // Pick top 2 from each for the homepage wire
+        articles = [
+            newsData.crypto[0], newsData.crypto[1],
+            newsData.markets[0], newsData.markets[1],
+            newsData.economy[0], newsData.economy[1]
+        ];
+    } else {
+        articles = newsData[category];
+    }
 
         postContainer.innerHTML = articles.map(art => `
             <article style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
