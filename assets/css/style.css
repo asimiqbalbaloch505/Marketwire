@@ -1,0 +1,177 @@
+/* Global Reset & Typography */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+.site-header {
+    background: #000;
+    color: #fff;
+    padding: 20px 0;
+    border-bottom: 3px solid #00c853;
+}
+
+.nav-center {
+    text-align: center;
+}
+
+.nav-link {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #00c853;
+}
+
+.nav-link.active {
+    color: #00c853;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    background: #111;
+    color: #00c853;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero p {
+    color: #ccc;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+#posts a:hover {
+    color: #00c853;
+    transition: 0.2s;
+}
+
+/* Layout Containers */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.container-article {
+    max-width: 1000px; /* Slimmer for reading */
+}
+
+.content-main {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 300px;
+}
+
+.sticky-sidebar {
+    position: sticky;
+    top: 20px;
+    text-align: center;
+}
+
+/* UI Elements */
+.section-title {
+    border-left: 5px solid #00c853;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.ad-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.ad-placeholder-bg {
+    background: #f4f4f4;
+}
+
+.sponsored-label {
+    font-size: 10px;
+    color: #999;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Footer */
+.site-footer {
+    background: #000;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-link {
+    color: #00c853;
+    text-decoration: none;
+}
+
+/* --- Mobile Responsiveness --- */
+
+/* This triggers when the screen is narrower than 768px (tablets and phones) */
+@media (max-width: 768px) {
+    
+    /* 1. Stack the Sidebar below the Content */
+    .container {
+        flex-direction: column; 
+        padding: 0 15px;
+    }
+
+    /* 2. Adjust Hero Text size so it doesn't overflow */
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    /* 3. Make the Navigation scrollable if there are too many links */
+    .nav-center {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
+    .nav-link {
+        margin: 0 10px;
+        font-size: 12px;
+    }
+
+    /* 4. Ensure ads don't break the screen width */
+    div[data-placement-id] {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* 5. Sidebar adjustment */
+    .sidebar {
+        min-width: 100%;
+    }
+
+    .sticky-sidebar {
+        position: static; /* Disable sticky on mobile so it flows naturally */
+    }
+}
