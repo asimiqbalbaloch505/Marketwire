@@ -138,33 +138,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const postContainer = document.getElementById("posts");
     const articleContainer = document.getElementById("full-article");
 
-   // 1. LIST PAGES LOGIC (Home / Category Pages)
-if (postContainer) {
-    const path = window.location.pathname.toLowerCase();
-    let category = "home";
+    // Detect if we are in a subfolder (economy, crypto, etc.)
+    const isSubfolder = window.location.pathname.toLowerCase().split('/').filter(Boolean).length > 1;
+    // Base path for links: if in a subfolder, go up one level to find article.html
+    const linkPrefix = isSubfolder ? "../" : "";
 
-    // Detect category by checking if the path contains the keyword
-    if (path.includes("crypto")) category = "crypto";
-    else if (path.includes("markets")) category = "markets";
-    else if (path.includes("economy")) category = "economy";
+    // 1. LIST PAGES LOGIC
+    if (postContainer) {
+        const path = window.location.pathname.toLowerCase();
+        let category = "home";
 
-    let articles = [];
-    if (category === "home") {
-        // Pick top 2 from each for the homepage wire
-        articles = [
-            newsData.crypto[0], newsData.crypto[1],
-            newsData.markets[0], newsData.markets[1],
-            newsData.economy[0], newsData.economy[1]
-        ];
-    } else {
-        articles = newsData[category];
-    }
+        if (path.includes("crypto")) category = "crypto";
+        else if (path.includes("markets")) category = "markets";
+        else if (path.includes("economy")) category = "economy";
+
+        let articles = (category === "home") 
+            ? [newsData.crypto[0], newsData.crypto[1], newsData.markets[0], newsData.markets[1], newsData.economy[0], newsData.economy[1]]
+            : newsData[category];
 
         postContainer.innerHTML = articles.map(art => `
             <article style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
                 <span style="color: #00c853; font-size: 11px; font-weight: bold; letter-spacing: 1px;">[ MARKET WIRE ]</span>
                 <h3 style="margin: 10px 0;">
-                    <a href="/article.html?id=${art.id}" style="text-decoration: none; color: #111; font-size: 1.5rem; line-height: 1.2;">${art.title}</a>
+                    <a href="${linkPrefix}article.html?id=${art.id}" style="text-decoration: none; color: #111; font-size: 1.5rem; line-height: 1.2;">${art.title}</a>
                 </h3>
                 <p style="color: #555; font-size: 15px; margin-bottom: 15px;">${art.excerpt}</p>
                 <div style="font-size: 12px; color: #999;">WIRE UPDATED: ${art.date}</div>
