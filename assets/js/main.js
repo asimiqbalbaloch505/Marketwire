@@ -44,9 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let category = "home";
 
         // Category Check
-        if (fullPath.includes("/crypto")) category = "crypto";
-        else if (fullPath.includes("/markets")) category = "markets";
-        else if (fullPath.includes("/economy")) category = "economy";
+   // Replace the old Category Check with this one:
+if (fullPath.includes("crypto")) category = "crypto";
+else if (fullPath.includes("markets")) category = "markets";
+else if (fullPath.includes("economy")) category = "economy";
 
         let articles = [];
         if (category === "home") {
