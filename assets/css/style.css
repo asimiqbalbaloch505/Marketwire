@@ -1,29 +1,32 @@
-/* Global Reset & Typography */
+/* =========================================
+   1. GLOBAL RESET & TYPOGRAPHY
+   ========================================= */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     line-height: 1.6;
+    background-color: #fff;
+    scroll-padding-top: 80px; 
 }
 
-/* Header & Navigation */
+/* =========================================
+   2. STICKY HEADER & NAVIGATION
+   ========================================= */
 .site-header {
-    background: #000;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    background-color: #0c0c0c;
     color: #fff;
     padding: 20px 0;
     border-bottom: 3px solid #00c853;
-}
-.site-header {
-    position: -webkit-sticky; /* Support for Safari */
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensures the header stays on top of images and ads */
-    background-color: #0c0c0c; /* Match your site's background color */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds depth when scrolling */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     width: 100%;
-    transition: all 0.3s ease;
 }
+
 .nav-center {
     text-align: center;
 }
@@ -37,112 +40,104 @@ body {
     transition: color 0.3s;
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link.active {
     color: #00c853;
 }
 
-.nav-link.active {
-    color: #00c853;
-    font-weight: bold;
-}
-
-/* Hero Section */
+/* =========================================
+   3. HERO SECTION (RESTORED)
+   ========================================= */
 .hero {
     background: #111;
     color: #00c853;
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin: 0;
+    letter-spacing: -1px;
 }
 
 .hero p {
     color: #ccc;
     letter-spacing: 2px;
     margin-top: 5px;
-}
-#posts a:hover {
-    color: #00c853;
-    transition: 0.2s;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-/* Layout Containers */
-/* Optimized Sidebar & Sticky Logic */
+/* =========================================
+   4. LAYOUT CONTAINERS
+   ========================================= */
 .container {
     display: flex;
-    align-items: flex-start; /* This is mandatory for sticky to work */
-    gap: 20px;
+    align-items: flex-start;
+    gap: 40px; 
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-}
-
-.content-main {
-    flex: 3;
-}
-
-.sidebar {
-    flex: 1;
-    min-width: 300px;
-    position: relative; /* Keeps the space empty so content doesn't slide under the sidebar */
-}
-
-.sticky-sidebar {
-    position: fixed;   /* This makes it FLOAT */
-    top: 100px;        /* Distance from top of screen */
-    width: 300px;      /* You must set a fixed width for floating elements */
-    height:100%;
-    /* This centers it relative to your 1200px container */
-    left: calc(50% + 300px); 
-    /* Formula: 50% (center) + (1200px container / 2) - small gap */
-    
-    
-    z-index: 1000;
-}
-@media (max-width: 1024px) {
-    .sticky-sidebar {
-        position: static;
-        width: 100%;
-    }
+    margin: 40px auto;
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
 .container-article {
-    max-width: 1000px; /* Slimmer for reading */
+    max-width: 1100px;
 }
 
 .content-main {
     flex: 3;
+    min-width: 0;
 }
 
+/* =========================================
+   5. SIDEBAR & STICKY LOGIC
+   ========================================= */
 .sidebar {
     flex: 1;
     min-width: 300px;
+    position: relative;
 }
 
 .sticky-sidebar {
+    position: -webkit-sticky;
     position: sticky;
-    top: 20px;
-    text-align: center;
+    top: 100px; 
+    z-index: 100;
+    width: 300px;
 }
 
-/* UI Elements */
+/* =========================================
+   6. POSTS & ARTICLE STYLING
+   ========================================= */
+#posts a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+#posts a:hover {
+    color: #00c853;
+}
+
 .section-title {
     border-left: 5px solid #00c853;
-    padding-left: 10px;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    color: #111;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#art-content p {
     margin-bottom: 20px;
+    font-size: 1.1rem;
 }
 
 .ad-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
-}
-
-.ad-placeholder-bg {
-    background: #f4f4f4;
+    margin: 30px 0;
 }
 
 .sponsored-label {
@@ -150,14 +145,69 @@ body {
     color: #999;
     display: block;
     margin-bottom: 5px;
+    text-align: center;
 }
 
-/* Footer */
+/* =========================================
+   7. COMMENT SECTION
+   ========================================= */
+.comment-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 30px;
+}
+
+.comment-item {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #f0f0f0;
+}
+
+.comment-item.reply {
+    margin-left: 40px;
+    border-left: 3px solid #00c853;
+}
+
+.comment-form-container {
+    background: #f4f7f6;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background: #1a237e;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================================
+   8. FOOTER
+   ========================================= */
 .site-footer {
     background: #000;
     color: #fff;
     padding: 40px 20px;
     text-align: center;
+    margin-top: 60px;
 }
 
 .footer-link {
@@ -165,53 +215,47 @@ body {
     text-decoration: none;
 }
 
-/* --- Mobile Responsiveness --- */
-
-/* This triggers when the screen is narrower than 768px (tablets and phones) */
-@media (max-width: 768px) {
-    
-    /* 1. Stack the Sidebar below the Content */
+/* =========================================
+   9. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 1024px) {
     .container {
-        flex-direction: column; 
-        padding: 0 15px;
+        flex-direction: column;
+        gap: 20px;
     }
 
-    /* 2. Adjust Hero Text size so it doesn't overflow */
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .sticky-sidebar {
+        position: static;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    
+    .container {
+        padding: 0 20px;
     }
 
-    .hero p {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
+    .form-row {
+        flex-direction: column;
     }
 
-    /* 3. Make the Navigation scrollable if there are too many links */
     .nav-center {
         display: flex;
         overflow-x: auto;
-        white-space: nowrap;
         padding-bottom: 10px;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
     .nav-link {
         margin: 0 10px;
         font-size: 12px;
-    }
-
-    /* 4. Ensure ads don't break the screen width */
-    div[data-placement-id] {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    /* 5. Sidebar adjustment */
-    .sidebar {
-        min-width: 100%;
-    }
-
-    .sticky-sidebar {
-        position: static; /* Disable sticky on mobile so it flows naturally */
     }
 }
