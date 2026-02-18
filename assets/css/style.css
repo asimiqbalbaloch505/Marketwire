@@ -14,7 +14,16 @@ body {
     padding: 20px 0;
     border-bottom: 3px solid #00c853;
 }
-
+.site-header {
+    position: -webkit-sticky; /* Support for Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures the header stays on top of images and ads */
+    background-color: #0c0c0c; /* Match your site's background color */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds depth when scrolling */
+    width: 100%;
+    transition: all 0.3s ease;
+}
 .nav-center {
     text-align: center;
 }
@@ -61,12 +70,43 @@ body {
 }
 
 /* Layout Containers */
+/* Optimized Sidebar & Sticky Logic */
 .container {
     display: flex;
+    align-items: flex-start; /* This is mandatory for sticky to work */
     gap: 20px;
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
+}
+
+.content-main {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 300px;
+    position: relative; /* Keeps the space empty so content doesn't slide under the sidebar */
+}
+
+.sticky-sidebar {
+    position: fixed;   /* This makes it FLOAT */
+    top: 100px;        /* Distance from top of screen */
+    width: 300px;      /* You must set a fixed width for floating elements */
+    height:100%;
+    /* This centers it relative to your 1200px container */
+    left: calc(50% + 300px); 
+    /* Formula: 50% (center) + (1200px container / 2) - small gap */
+    
+    
+    z-index: 1000;
+}
+@media (max-width: 1024px) {
+    .sticky-sidebar {
+        position: static;
+        width: 100%;
+    }
 }
 
 .container-article {
